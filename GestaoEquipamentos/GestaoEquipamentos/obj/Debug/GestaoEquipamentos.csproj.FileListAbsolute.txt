@@ -1,0 +1,7 @@
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\obj\Debug\GestaoEquipamentos.csprojAssemblyReference.cache
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\obj\Debug\GestaoEquipamentos.csproj.CoreCompileInputs.cache
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\bin\Debug\GestaoEquipamentos.exe.config
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\bin\Debug\GestaoEquipamentos.exe
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\bin\Debug\GestaoEquipamentos.pdb
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\obj\Debug\GestaoEquipamentos.exe
+C:\Users\Carlos\source\repos\GestaoEquipamentos\GestaoEquipamentos\obj\Debug\GestaoEquipamentos.pdb
