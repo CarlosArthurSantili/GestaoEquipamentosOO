@@ -24,6 +24,9 @@ using System;
 //Classe ConjuntoChamados - OK
 //Classe Menu - OK
 
+//Não deletar equipamento com chamado - OK
+//Não permitir adicionar data fabricacao valor futuro - OK
+
 namespace GestaoEquipamentosPOO
 {
     class Program

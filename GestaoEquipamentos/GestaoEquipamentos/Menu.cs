@@ -37,7 +37,7 @@ namespace GestaoEquipamentos
                             while (opcaoEquipamento != 5)
                             {
                                 exibirMenuEquipamento();
-                                opcaoEquipamento = conjuntoEquipamentos.controleEquipamento();
+                                opcaoEquipamento = conjuntoEquipamentos.controleEquipamento(conjuntoChamados);
                             }
                             break;
                         }
@@ -76,6 +76,7 @@ namespace GestaoEquipamentos
 
         public void exibirMenuPrincipal()
         {
+            Console.Clear();
             Console.WriteLine("Opção 1 - Equipamento");
             Console.WriteLine("Opção 2 - Chamado");
             Console.WriteLine("Opção 3 - Sair da aplicação");
@@ -85,6 +86,7 @@ namespace GestaoEquipamentos
 
         private void exibirMenuEquipamento()
         {
+            Console.Clear();
             Console.WriteLine("Menu de Equipamento: ");
             Console.WriteLine("Opção 1 - Cadastrar");
             Console.WriteLine("Opção 2 - Editar");
@@ -97,6 +99,7 @@ namespace GestaoEquipamentos
 
         private void exibirMenuChamado()
         {
+            Console.Clear();
             Console.WriteLine("Menu de Chamado: ");
             Console.WriteLine("Opção 1 - Cadastrar");
             Console.WriteLine("Opção 2 - Editar");

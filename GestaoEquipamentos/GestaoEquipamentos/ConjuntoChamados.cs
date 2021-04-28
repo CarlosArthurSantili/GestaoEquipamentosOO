@@ -9,9 +9,17 @@ namespace GestaoEquipamentos
 {
     class ConjuntoChamados
     {
-        Chamado[] chamadosCadastrados = new Chamado[99];
-        int quantidadeChamadosCadastrados;
+        private Chamado[] chamadosCadastrados = new Chamado[99];
+        private int quantidadeChamadosCadastrados;
 
+        public int getQuantidadeChamadosCadastrados()
+        {
+            return quantidadeChamadosCadastrados;
+        }
+        public Chamado[] getChamadosCadastrados()
+        {
+            return chamadosCadastrados;
+        }
 
         public ConjuntoChamados(Chamado[] chamadosCadastrados, int quantidadeChamadosCadastrados)
         {

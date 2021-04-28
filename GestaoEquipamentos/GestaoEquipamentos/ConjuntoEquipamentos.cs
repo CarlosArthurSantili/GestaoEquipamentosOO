@@ -30,7 +30,7 @@ namespace GestaoEquipamentos
             return quantidadeEquipamentosCadastrados;
         }
 
-        public int controleEquipamento()
+        public int controleEquipamento(ConjuntoChamados conjuntoChamados)
         {
             int opcaoEquipamento = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
@@ -176,18 +176,32 @@ namespace GestaoEquipamentos
                         Equipamento novoEquipamento = new Equipamento(idNovo, nomeEquipamentoValido, valorAquisicaoEquipamentoValido, numeroSerieEquipamentoValido, dataFabricacaoEquipamentoValido, fabricanteEquipamentoValido);
                         
                         int idCorrecao = Convert.ToInt32(idEquipamento);
+                        int contadorEquipamento = 0;
 
                         for (int i = 0; i < 99; i++)
                         {
                             if (equipamentosCadastrados[i].getId() == idCorrecao)
                             {
-                                equipamentosCadastrados[idCorrecao-1] = novoEquipamento;
-                                quantidadeEquipamentosCadastrados--;
-                                Console.Clear();
-                                Console.WriteLine("Equipamento excluido com sucesso");
-                                Console.ReadLine();
-                                break;
+                                if (validarExclusao(conjuntoChamados, idCorrecao))
+                                {
+                                    equipamentosCadastrados[idCorrecao - 1] = novoEquipamento;
+                                    quantidadeEquipamentosCadastrados--;
+                                    Console.Clear();
+                                    Console.WriteLine("Equipamento excluido com sucesso");
+                                    Console.ReadLine();
+                                    break;
+                                }
+                                else 
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Não foi possível excluir o equipamento, ele está vinculado a um chamado, tente novamente");
+                                    Console.ReadLine();
+                                    break;
+                                }
                             }
+                            contadorEquipamento++;
+                            if (contadorEquipamento == quantidadeEquipamentosCadastrados)
+                                break;
                         }
                     }
                     else
@@ -222,6 +236,22 @@ namespace GestaoEquipamentos
                 Console.ReadLine();
             }
             return opcaoEquipamento;
+        }
+
+        private bool validarExclusao(ConjuntoChamados conjuntoChamados, int idEquipamento) 
+        {
+            int contadorConjuntos = 0;
+            for (int i = 0; i < 99; i++)
+            {
+                if (conjuntoChamados.getChamadosCadastrados()[i].getIdEquipamento() == idEquipamento)
+                {
+                    return false;
+                }
+                contadorConjuntos++;
+                if (contadorConjuntos == conjuntoChamados.getQuantidadeChamadosCadastrados())
+                    break;
+            }
+            return true;
         }
 
         private bool validarAtributosEquipamento(string nomeEquipamento, string valorAquisicaoEquipamento, string numeroSerieEquipamento, string dataFabricacaoEquipamento, string fabricanteEquipamento)
@@ -278,6 +308,14 @@ namespace GestaoEquipamentos
             try
             {
                 DateTime dataFabricacaoValido = Convert.ToDateTime(dataFabricacaoEquipamento);
+                if (dataFabricacaoValido>DateTime.Now)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Data inválida ('data de fabricação futura'), tente novamente");
+                    Console.ReadLine();
+                    Console.Clear();
+                    return false;
+                }
             }
             catch
             {
@@ -321,22 +359,16 @@ namespace GestaoEquipamentos
                 return false;
             else
             {
-                try
+                int contador = 0;
+                for (int i = 0; i < 99; i++)
                 {
-                    for (int i = 0; i < 99; i++)
+                    if (equipamentosCadastrados[i].getId() == idCheck)
                     {
-                        if (equipamentosCadastrados[i].getId() == idCheck)
-                        {
-                            return true;
-                        }
+                        return true;
                     }
-                }
-                catch
-                {
-                    Console.Clear();
-                    Console.WriteLine("Valor invalido de id, tente novamente");
-                    Console.ReadLine();
-                    Console.Clear();
+                    contador++;
+                    if (contador == quantidadeEquipamentosCadastrados)
+                        break;
                 }
                 return false;
             }
